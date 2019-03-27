@@ -13,6 +13,11 @@ class Post extends Model
         'title', 'content', 'category_id', 'image', 'slug'
     ];
 
+    public function getImageAttribute($image)
+    {
+        return asset($image);
+    }
+
     protected $dates = ['deleted_at'];
 
     public function category()
