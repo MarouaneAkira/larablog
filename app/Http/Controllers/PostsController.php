@@ -58,12 +58,12 @@ class PostsController extends Controller
 
         $image_new_name = time().$image->getClientOriginalName();
 
-        $image->move('uploads/posts', $image_new_name);
+        $image->move('uploads/posts/', $image_new_name);
 
         $post = Post::create([
             'title' => $request->title,
             'content' => $request->content,
-            'image' => 'uploads/posts'.$image_new_name,
+            'image' => 'uploads/posts/'.$image_new_name,
             'category_id' => $request->category_id,
             'slug' => str_slug($request->title)
         ]);
