@@ -119,8 +119,15 @@ class PostsController extends Controller
 
         $post->delete();
 
-        Session::flash('success', 'The post was deleted');
+        Session::flash('success', 'The post has been trashed');
 
         return redirect()->back();
+    }
+
+    public function trashed()
+    {
+        $posts = Post::onlyTrashed()->get();
+
+        dd($posts);
     }
 }
