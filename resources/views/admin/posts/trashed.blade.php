@@ -30,19 +30,25 @@
             </thead>
 
             <tbody>
-               @foreach($posts as $post)
-                    <tr>
-                        <td><img src="{{ $post->image }}" alt="{{ $post->title }}" width=90px height=50px></td>
-                        <td>{{ $post->title }}</td>
-                        <td>Edit</td>
-                        <td>
-                        <a href="{{ route('posts.restore', ['id' => $post->id] ) }}" class="btn btn-xs btn-success">Restore</a>
-                        </td>
-                        <td>
-                        <a href="{{ route('posts.kill', ['id' => $post->id] ) }}" class="btn btn-danger">Destroy</a>
-                        </td>
-                    </tr>
-               @endforeach
+               @if($posts->count() > 0)
+                    @foreach($posts as $post)
+                        <tr>
+                            <td><img src="{{ $post->image }}" alt="{{ $post->title }}" width=90px height=50px></td>
+                            <td>{{ $post->title }}</td>
+                            <td>Edit</td>
+                            <td>
+                            <a href="{{ route('posts.restore', ['id' => $post->id] ) }}" class="btn btn-xs btn-success">Restore</a>
+                            </td>
+                            <td>
+                            <a href="{{ route('posts.kill', ['id' => $post->id] ) }}" class="btn btn-danger">Destroy</a>
+                            </td>
+                        </tr>
+                    @endforeach
+               @else
+                        <tr>
+                            <th colspan="5" class="text-center">No trashed posts</th>
+                        </tr>
+               @endif
             </tbody>
 
         </table>

@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
         'as' => 'posts.blog'
     ]);
 
+
     Route::post('/posts/store', [
         'uses' => 'PostsController@store',
         'as' => 'posts.store'
@@ -54,6 +55,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
      Route::get('/posts/restore{id}', [
         'uses' => 'PostsController@restore',
         'as' => 'posts.restore'
+    ]);
+
+     Route::get('/posts/edit{id}', [
+        'uses' => 'PostsController@edit',
+        'as' => 'posts.edit'
+    ]);
+
+    Route::post('/posts/update{id}',[
+        'uses' => 'PostsController@update',
+        'as' => 'posts.update'
     ]);
 
      Route::get('/posts', [

@@ -22,26 +22,32 @@
             </thead>
 
             <tbody>
-                @foreach($categories as $category)
-                <tr>
-                    <td>
-                        {{ $category->name }}
-                    </td>
+                @if($categories->count() > 0)
+                    @foreach($categories as $category)
+                    <tr>
+                        <td>
+                            {{ $category->name }}
+                        </td>
 
-                    <td>
-                        <a href="{{ route('categories.edit', [ 'id' => $category->id ]) }}" class="btn btn-xs btn-info">
-                            Edit
-                        </a>
+                        <td>
+                            <a href="{{ route('categories.edit', [ 'id' => $category->id ]) }}" class="btn btn-xs btn-info">
+                                Edit
+                            </a>
 
-                    </td>
-                    <td>
-                        <a href="{{ route('categories.delete', [ 'id' => $category->id ]) }}" class="btn btn-xs btn-danger">
-                            Delete
-                        </a>
+                        </td>
+                        <td>
+                            <a href="{{ route('categories.delete', [ 'id' => $category->id ]) }}" class="btn btn-xs btn-danger">
+                                Delete
+                            </a>
 
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
                 @endforeach
+                @else 
+                     <tr>
+                        <th colspan="5" class="text-center">No categories published</th>
+                    </tr>
+                @endif
             </tbody>
 
         </table>

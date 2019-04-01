@@ -26,16 +26,24 @@
             </thead>
 
             <tbody>
-               @foreach($posts as $post)
+               @if($posts->count() > 0)
+                    @foreach($posts as $post)
+                        <tr>
+                            <td><img src="{{ $post->image }}" alt="{{ $post->title }}" width=90px height=50px></td>
+                            <td>{{ $post->title }}</td>
+                            <td>
+                                <a href="{{ route('posts.edit', ['id' => $post->id] ) }}" class="btn btn-xs btn-primary">Edit</a>
+                            </td>
+                            <td>
+                                <a href="{{ route('posts.delete', ['id' => $post->id] ) }}" class="btn btn-xs btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else 
                     <tr>
-                        <td><img src="{{ $post->image }}" alt="{{ $post->title }}" width=90px height=50px></td>
-                        <td>{{ $post->title }}</td>
-                        <td>Edit</td>
-                        <td>
-                        <a href="{{ route('posts.delete', ['id' => $post->id] ) }}" class="btn btn-xs btn-danger">Delete</a>
-                        </td>
+                        <th colspan="5" class="text-center">The post index is empty!</th>
                     </tr>
-               @endforeach
+                @endif   
             </tbody>
 
         </table>
