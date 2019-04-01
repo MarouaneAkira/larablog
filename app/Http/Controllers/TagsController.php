@@ -67,7 +67,9 @@ class TagsController extends Controller
      */
     public function edit($id)
     {
-        
+        $tag = Tag::find($id);
+
+        return view('admin.tags.edit')->with('tag', $tag);
     }
 
     /**
@@ -79,7 +81,19 @@ class TagsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'tag' => 'required'
+        ]);
+
+        $tag = Tag::find($id);
+
+        $tag->tag = $request->tag;
+
+        $tag->save();
+
+        Session::flash('success', 'Tag updated');
+
+        return redirect()->back();
     }
 
     /**
@@ -90,6 +104,10 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Tag::destroy($id);
+
+        Session::flash('success','Tag deleted');
+
+        return redirect()->back();
     }
 }
