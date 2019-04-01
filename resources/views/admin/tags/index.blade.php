@@ -29,17 +29,17 @@
                     @foreach($tags as $tag)
                     <tr>
                         <td>
-                            {{ $tag->name }}
+                            {{ $tag->tag }}
                         </td>
 
                         <td>
-                            <a href="{{ route('tags.edit', [ 'id' => $tag->id ]) }}" class="btn btn-xs btn-info">
+                            <a href="{{ route('tag.edit', [ 'id' => $tag->id ]) }}" class="btn btn-xs btn-info">
                                 Edit
                             </a>
 
                         </td>
                         <td>
-                            <a href="{{ route('tags.delete', [ 'id' => $tag->id ]) }}" class="btn btn-xs btn-danger">
+                            <a href="{{ route('tag.delete', [ 'id' => $tag->id ]) }}" class="btn btn-xs btn-danger">
                                 Delete
                             </a>
 

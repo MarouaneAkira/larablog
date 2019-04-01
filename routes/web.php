@@ -101,6 +101,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
         'uses' => 'CategoriesController@update',
         'as' => 'categories.update'
     ]);
+    
+    Route::get('/tags/edit{id}', [
+        'uses' => 'TagsController@edit',
+        'as' => 'tags.edit'
+    ]);
+
+    Route::post('/tags/update{id}', [
+        'uses' => 'TagsController@update',
+        'as' => 'tags.update'
+    ]);
+
+    Route::get('/tags/delete{id}', [
+        'uses' => 'TagsController@delete',
+        'as' => 'tags.delete'
+    ]);
 });
 
 
