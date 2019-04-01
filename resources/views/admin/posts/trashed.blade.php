@@ -23,6 +23,10 @@
                     Restore
                 </th>
 
+                <th>
+                    Destroy
+                </th>
+
             </thead>
 
             <tbody>
@@ -32,7 +36,10 @@
                         <td>{{ $post->title }}</td>
                         <td>Edit</td>
                         <td>
-                        <a href="{{ route('posts.delete', ['id' => $post->id] ) }}" class="btn btn-danger">Delete</a>
+                        <a href="{{ route('posts.restore', ['id' => $post->id] ) }}" class="btn btn-xs btn-success">Restore</a>
+                        </td>
+                        <td>
+                        <a href="{{ route('posts.kill', ['id' => $post->id] ) }}" class="btn btn-danger">Destroy</a>
                         </td>
                     </tr>
                @endforeach

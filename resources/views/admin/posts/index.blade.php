@@ -20,7 +20,7 @@
                 </th>
 
                 <th>
-                    Delete
+                    Trash
                 </th>
 
             </thead>
@@ -32,7 +32,7 @@
                         <td>{{ $post->title }}</td>
                         <td>Edit</td>
                         <td>
-                        <a href="{{ route('posts.delete', ['id' => $post->id] ) }}" class="btn btn-danger">Delete</a>
+                        <a href="{{ route('posts.delete', ['id' => $post->id] ) }}" class="btn btn-xs btn-danger">Delete</a>
                         </td>
                     </tr>
                @endforeach
