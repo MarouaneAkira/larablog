@@ -45,7 +45,7 @@ class TagsController extends Controller
 
         Session::flash('success', 'Tag created successfully');
 
-        return redirect()->back();
+        return redirect()->route('tags');
     }
 
     /**
@@ -93,7 +93,7 @@ class TagsController extends Controller
 
         Session::flash('success', 'Tag updated');
 
-        return redirect()->back();
+        return redirect()->route('tags');
     }
 
     /**

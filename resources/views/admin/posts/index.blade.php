@@ -35,10 +35,10 @@
                             <td><img src="{{ $post->image }}" alt="{{ $post->title }}" width=90px height=50px></td>
                             <td>{{ $post->title }}</td>
                             <td>
-                                <a href="{{ route('posts.edit', ['id' => $post->id] ) }}" class="btn btn-xs btn-primary">Edit</a>
+                                <a href="{{ route('posts.edit', ['id' => $post->id] ) }}" class="btn btn-sm btn-primary">Edit</a>
                             </td>
                             <td>
-                                <a href="{{ route('posts.delete', ['id' => $post->id] ) }}" class="btn btn-xs btn-danger">Delete</a>
+                                <a href="{{ route('posts.delete', ['id' => $post->id] ) }}" class="btn btn-sm btn-danger">Delete</a>
                             </td>
                         </tr>
                     @endforeach

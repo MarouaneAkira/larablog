@@ -33,13 +33,13 @@
                         </td>
 
                         <td>
-                            <a href="{{ route('categories.edit', [ 'id' => $category->id ]) }}" class="btn btn-xs btn-info">
+                            <a href="{{ route('categories.edit', [ 'id' => $category->id ]) }}" class="btn btn-sm btn-info">
                                 Edit
                             </a>
 
                         </td>
                         <td>
-                            <a href="{{ route('categories.delete', [ 'id' => $category->id ]) }}" class="btn btn-xs btn-danger">
+                            <a href="{{ route('categories.delete', [ 'id' => $category->id ]) }}" class="btn btn-sm btn-danger">
                                 Delete
                             </a>
 

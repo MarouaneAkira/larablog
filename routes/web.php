@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/test', function(){
+    return App\Categories::find(4);
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -128,7 +132,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     ]);
 
     Route::get('/tag/delete/{id}', [
-        'uses' => 'TagsController@delete',
+        'uses' => 'TagsController@destroy',
         'as' => 'tag.delete'
     ]);
 });

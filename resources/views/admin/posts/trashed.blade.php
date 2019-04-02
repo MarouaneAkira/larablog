@@ -19,10 +19,6 @@
                 </th>
 
                 <th>
-                    Edit
-                </th>
-
-                <th>
                     Restore
                 </th>
 
@@ -38,12 +34,11 @@
                         <tr>
                             <td><img src="{{ $post->image }}" alt="{{ $post->title }}" width=90px height=50px></td>
                             <td>{{ $post->title }}</td>
-                            <td>Edit</td>
                             <td>
-                            <a href="{{ route('posts.restore', ['id' => $post->id] ) }}" class="btn btn-xs btn-success">Restore</a>
+                            <a href="{{ route('posts.restore', ['id' => $post->id] ) }}" class="btn btn-sm btn-success">Restore</a>
                             </td>
                             <td>
-                            <a href="{{ route('posts.kill', ['id' => $post->id] ) }}" class="btn btn-danger">Destroy</a>
+                            <a href="{{ route('posts.kill', ['id' => $post->id] ) }}" class="btn btn-sm btn-danger">Destroy</a>
                             </td>
                         </tr>
                     @endforeach
