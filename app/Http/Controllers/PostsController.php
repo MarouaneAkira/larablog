@@ -98,7 +98,7 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
 
-        return view('admin.posts.edit')->with('post', $post)->with('categories', Categories::all());
+        return view('admin.posts.edit')->with('post', $post)->with('categories', Categories::all())->with('tags', Tag::all());
     }
 
     /**
@@ -137,6 +137,8 @@ class PostsController extends Controller
 
 
         $post->save();
+
+        $post->tags()->sync($request->tags);
 
         Session::flash('success', 'Post updated successfully');
 
