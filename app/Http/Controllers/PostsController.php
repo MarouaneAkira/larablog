@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Session;
 use App\Categories;
 use App\Post;
+use App\Tag;
 
 class PostsController extends Controller
 {
@@ -34,7 +35,7 @@ class PostsController extends Controller
             return redirect()->back();
         }
 
-        return view('admin.posts.blog')->with('categories', Categories::all());
+        return view('admin.posts.blog')->with('categories', $categories)->with('tags', Tag::all());
     }
 
     /**
@@ -45,13 +46,14 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        
+        var_dump($request->all());        
 
         $this->validate($request, [
             'title' => 'required|max:255',
             'image' => 'required|image|max:5120|mimes:jpg,jpeg,png,gif',
             'content' => 'required',
-            'category_id' => 'required'
+            'category_id' => 'required',
+            'tags' => 'required'
         ]);
 
         $image = $request->image;
@@ -67,6 +69,8 @@ class PostsController extends Controller
             'category_id' => $request->category_id,
             'slug' => str_slug($request->title)
         ]);
+
+        $post->tags()->attach($request->tags);
 
         Session::flash('success', 'Post created successfully');
 

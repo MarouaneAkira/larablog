@@ -12,7 +12,7 @@
 */
 
 Route::get('/test', function(){
-    return App\Categories::find(4)->post;
+    return App\Tag::find(4)->post;
 });
 
 Route::get('/', function () {
