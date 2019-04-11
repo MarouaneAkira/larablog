@@ -12,7 +12,7 @@
 */
 
 Route::get('/test', function(){
-    return App\Tag::find(4)->post;
+    return App\User::find(1)->profile;
 });
 
 Route::get('/', function () {
@@ -134,6 +134,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::get('/tag/delete/{id}', [
         'uses' => 'TagsController@destroy',
         'as' => 'tag.delete'
+    ]);
+
+    Route::get('/users', [
+        'uses' => 'UsersController@index',
+        'as' => 'users'
+    ]);
+
+    Route::get('/user/create',[
+        'uses' => 'UsersController@create',
+        'as' => 'user.create'
+    ]);
+
+    Route::post('/users/store', [
+        'uses' => 'UsersController@store',
+        'as' => 'user.store'
     ]);
 });
 
