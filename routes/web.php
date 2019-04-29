@@ -96,7 +96,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
         'as' => 'categories.edit'
     ]);
 
-     Route::get('/categories/delete{id}', [
+     Route::get('/categories/delete/{id}', [
         'uses' => 'CategoriesController@destroy',
         'as' => 'categories.delete'
     ]);
@@ -146,10 +146,48 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
         'as' => 'user.create'
     ]);
 
-    Route::post('/users/store', [
+    Route::post('/user/store', [
         'uses' => 'UsersController@store',
         'as' => 'user.store'
     ]);
+
+    Route::get('/user/admin/{id}', [
+        'uses' => 'UsersController@admin',
+        'as' => 'user.admin'
+    ])->middleware('admin');
+
+    Route::get('/user/not-admin/{id}', [
+        'uses' => 'UsersController@not_admin',
+        'as' => 'user.not.admin'
+    ]);
+
+    Route::get('/user/profile', [
+        'uses' => 'ProfilesController@index',
+        'as' => 'user.profile'
+    ]);
+
+    Route::get('/user/delete/{id}', [
+        'uses' => 'UsersController@destroy',
+        'as' => 'user.delete'
+    ]);
+
+
+    Route::post('/user/profile/update', [
+        'uses' => 'ProfilesController@update',
+        'as' => 'user.profile.update'
+    ]);
+
+    Route::get('/settings', [
+        'uses' => 'SettingsController@index',
+        'as' => 'settings'
+    ]);
+
+    Route::post('/settings/update', [
+        'uses' => 'SettingsController@update',
+        'as' => 'settings.update'
+    ]);
+
+    
 });
 
 

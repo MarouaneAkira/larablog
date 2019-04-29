@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -48,7 +53,8 @@ class UsersController extends Controller
         ]);
 
         $profile = Profile::create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'avatar' => 'uploads/avatars/1.png'
         ]);
 
         Session::flash('success', 'User added successfully');
@@ -98,6 +104,42 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+
+        $user->profile->delete();
+
+        $user->delete();
+
+        Session::flash('success', 'User deleted');
+
+        return redirect()->back();
+    }
+
+    public function admin($id)
+    {
+        $user = User::find($id);
+
+        $user->admin = 1;
+
+        $user->save();
+
+
+        Session::flash('success', 'Permission changed successfully');
+
+        return redirect()->back();
+    }
+
+    public function not_admin($id)
+    {
+        $user = User::find($id);
+
+        $user->admin = 0;
+
+        $user->save();
+
+
+        Session::flash('success', 'Permission changed successfully');
+
+        return redirect()->back();
     }
 }

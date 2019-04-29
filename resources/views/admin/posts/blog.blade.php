@@ -45,7 +45,8 @@
 
             <div class="form-group">
                 <label for="content">Content</label>
-                <textarea name="content" id="content" cols="5" rows="5" class="form-control"></textarea>
+                <textarea></textarea>
+                <!--<div name="content" id="content" class="form-control"></div>-->
             </div>
 
             <div class="form-group">
@@ -58,3 +59,8 @@
 </div>
 
 @endsection
+
+@section('styles')
+    <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
+  <script>tinymce.init({selector:'textarea'});</script>
+@stop

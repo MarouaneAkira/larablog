@@ -36,13 +36,19 @@
                             <img src="{{ asset($user->profile->avatar) }}" alt="" width="60px" height="60px" style="border-radius: 50%;">
                             </td>
                             <td>
-                                {{ $user->name}}
+                                {{ $user->name }}
                             </td>
                             <td>
-                                Permissions
+                                @if($user->admin )
+                                     <a href="{{ route('user.not.admin', ['id' => $user->id]) }}" class="btn btn-sm btn-danger">Make Not Admin</a>
+                                @else
+                                    <a href="{{ route('user.admin', ['id' => $user->id]) }}" class="btn btn-sm btn-success">Make Admin</a>
+                                @endif
                             </td>
                             <td>
-                                Delete
+                                @if(Auth::id() !== $user->id) 
+                                    <a href="{{ route('user.delete', ['id' => $user->id]) }}" class="btn btn-sm btn-danger">Delete</a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

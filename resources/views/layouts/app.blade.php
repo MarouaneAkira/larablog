@@ -6,19 +6,21 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
+    
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    @yield('styles')
 </head>
 <body>
     <div id="app">
@@ -82,12 +84,20 @@
                             <li class="list-group-item">
                                 <a href="{{ route('home')}}">Home</a>
                             </li>
+                            
+                            @if(Auth::user()->admin)
                             <li class="list-group-item">
                                 <a href="{{ route('users')}}">Users</a>
                             </li>
                             <li class="list-group-item">
                                 <a href="{{ route('user.create')}}">Create User</a>
                             </li>
+                            @endif
+
+                            <li class="list-group-item">
+                                <a href="{{ route('user.profile')}}">Profile</a>
+                            </li>
+
                             <li class="list-group-item">
                                 <a href="{{ route('categories')}}">Categories</a>
                             </li>
@@ -109,6 +119,11 @@
                             <li class="list-group-item">
                                 <a href="{{ route('posts.blog') }}">Create new post</a>
                             </li>
+                            @if(Auth::user()->admin)
+                            <li class="list-group-item">
+                                <a href="{{ route('settings')}}">Settings</a>
+                            </li>
+                            @endif
                         </ul>
                     </div>
                 @endif
@@ -119,8 +134,8 @@
             </div>
         </main>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="{{ asset('js/toastr.min.js') }}"></script>
+@yield('scripts')
 <script>
     @if(Session::has('success'))
         toastr.success("{{ Session::get('success') }}")
@@ -130,5 +145,7 @@
         toastr.info("{{ Session::get('info')}}")
     @endif    
 </script>
+
+
 </body>
 </html>
